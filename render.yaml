@@ -1,0 +1,29 @@
+# Render.com deployment config
+# This file tells Render how to deploy your bot automatically
+
+services:
+  - type: web
+    name: whatsapp-clinic-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TIMEZONE
+        value: Asia/Singapore
+      # Set these in Render Dashboard → Environment:
+      - key: WHATSAPP_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_ID
+        sync: false
+      - key: WEBHOOK_VERIFY_TOKEN
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_EMAIL
+        sync: false
+      - key: GOOGLE_PRIVATE_KEY
+        sync: false
+      - key: MASTER_SHEET_ID
+        sync: false
